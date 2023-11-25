@@ -4,7 +4,11 @@ import { api } from "~/data/api";
 import { ProductType } from "~/data/types/product-type";
 
 async function getFeaturedProducts(): Promise<ProductType[]> {
-  const products = await api("/products/featured").then((res) => res.json());
+  const products = await api("/products/featured", {
+    next: {
+      revalidate: 60 * 60, // 1 hour
+    },
+  }).then((res) => res.json());
   return products;
 }
 
