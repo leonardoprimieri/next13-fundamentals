@@ -5,7 +5,10 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
-  title: "devstore",
+  title: {
+    template: "%s | devstore",
+    default: "devstore",
+  },
   description:
     "devstore is a marketplace for developers to buy and sell digital products.",
 };

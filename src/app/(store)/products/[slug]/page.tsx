@@ -1,3 +1,4 @@
+import { Metadata } from "next";
 import Image from "next/image";
 import { api } from "~/data/api";
 import { ProductType } from "~/data/types/product-type";
@@ -19,6 +20,14 @@ type Props = {
     slug: string;
   };
 };
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const product = await getProduct(params?.slug);
+
+  return {
+    title: product.title,
+  };
+}
 
 export default async function ProductPage({ params }: Props) {
   const options = ["P", "M", "G", "GG"];
